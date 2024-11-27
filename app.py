@@ -1,19 +1,29 @@
+import os
 import pyodbc # type: ignore
 from flask import Flask, redirect, render_template, request, url_for # type: ignore
 
 app = Flask(__name__)
 
-# Azure SQL Database Connection
-server = 'serveur-societe.database.windows.net'  # Replace with your server name
-database = 'societe'  # Replace with your database name
-username = 'societe'  # Replace with your username
-password = 'Dawser12345'  # Replace with your password
-driver = '{ODBC Driver 18 for SQL Server}'  # Ensure this is correct
+# Récupérer les informations de connexion depuis les variables d'environnement
+server = os.getenv('DB_SERVER', 'server-societe.database.windows.net')  # Nom du serveur Azure
+database = os.getenv('DB_NAME', 'serveur-societe')  # Nom de la base de données
+username = os.getenv('DB_USER', 'societe')  # Nom d'utilisateur
+password = os.getenv('DB_PASSWORD', 'Dawser1234')  # Mot de passe
+driver = '{ODBC Driver 18 for SQL Server}'  # S'assurer que le driver est installé
 
-# Corrected Connection String
-conn = pyodbc.connect(
-    f'DRIVER={driver};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+# Chaîne de connexion à la base de données Azure
+conn_str = (
+    f'Driver={driver};'
+    f'Server=tcp:{server},1433;'
+    f'Database={database};'
+    f'Uid={username};'
+    f'Pwd={password};'
+    f'Encrypt=yes;'
+    f'TrustServerCertificate=no;'
+    f'Connection Timeout=30;'
 )
+conn = pyodbc.connect(conn_str)
+
 
 # Routes
 @app.route('/')
@@ -89,5 +99,6 @@ def modifier(id_client):
         regions = cursor.fetchall()
     return render_template('modifier.html', client=client, regions=regions)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
