@@ -1,20 +1,105 @@
 <!DOCTYPE html>
 <html>
-<head><title>Ajouter Client</title></head>
+<head>
+    <title>Ajouter Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
-<h1>Ajouter un nouveau client</h1>
-<form method="POST">
-    Nom: <input type="text" name="nom" required><br>
-    Prénom: <input type="text" name="prenom" required><br>
-    Âge: <input type="number" name="age" required><br>
-    Région: 
-    <select name="id_region">
-        {% for region in regions %}
-        <option value="{{ region[0] }}">{{ region[1] }}</option>
-        {% endfor %}
-    </select><br>
-    <button type="submit">Ajouter</button>
-</form>
-<a href="/liste_client">Retour à la liste</a>
+    <h1>Ajouter un nouveau client</h1>
+    <form method="POST">
+        <label for="nom">Nom:</label>
+        <input type="text" name="nom" required><br>
+        
+        <label for="prenom">Prénom:</label>
+        <input type="text" name="prenom" required><br>
+        
+        <label for="age">Âge:</label>
+        <input type="number" name="age" required><br>
+        
+        <label for="id_region">Région:</label>
+        <select name="id_region">
+            {% for region in regions %}
+            <option value="{{ region[0] }}">{{ region[1] }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <button type="submit">Ajouter</button>
+    </form>
+    
+    <a href="/liste_client">Retour à la liste</a>
 </body>
 </html>
