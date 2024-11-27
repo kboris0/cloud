@@ -4,20 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        table {
+            width: 80%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #ddd;
+        }
+        
+        table th, table td {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <table border="1">
+    <table>
         <tr>
             <th>ID_region</th>
             <th>Région</th>
-            
         </tr>
         {% for region in regions %}
         <tr>
             <td>{{ region[0] }}</td>
             <td>{{ region[1] }}</td>
-         
-           
         </tr>
         {% endfor %}
     </table>

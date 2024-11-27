@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head><title>Supprimer Client</title></head>
+<head>
+    <title>Supprimer Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+            font-size: 18px;
+            margin: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
-<h1>Confirmer la suppression</h1>
-<p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-<form method="POST" action="/supprimer/{{ client_id }}">
-    <button type="submit">Oui, supprimer</button>
-</form>
-<a href="/liste_client">Annuler</a>
+    <h1>Confirmer la suppression</h1>
+    <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+    <form method="POST" action="/supprimer/{{ client_id }}">
+        <button type="submit">Oui, supprimer</button>
+    </form>
+    <a href="/liste_client">Annuler</a>
 </body>
 </html>

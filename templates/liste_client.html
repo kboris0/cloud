@@ -1,31 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head><title>Liste des Clients</title></head>
+<head>
+    <title>Liste des Clients</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #45a049;
+            text-decoration: underline;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .add-client-link {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .add-client-link:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
 <body>
-<h1>Liste des Clients</h1>
-<table border="1">
-    <tr>
-        <th>ID</th>    
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Âge</th>
-        <th>Région</th>
-        <th>Actions</th>
-    </tr>
-    {% for client in clients %}
-    <tr>
-        <td>{{ client[0] }}</td>
-        <td>{{ client[1] }}</td>
-        <td>{{ client[2] }}</td>
-        <td>{{ client[3] }}</td>
-        <td>{{ client[4] }}</td>
-        <td>
-            <a href="/modifier/{{ client[0] }}">Modifier</a> |
-            <a href="/supprimer/{{ client[0] }}">Supprimer</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-<a href="/ajout_client">Ajouter un client</a>
+    <h1>Liste des Clients</h1>
+    <table>
+        <tr>
+            <th>ID</th>    
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Âge</th>
+            <th>Région</th>
+            <th>Actions</th>
+        </tr>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client[0] }}</td>
+            <td>{{ client[1] }}</td>
+            <td>{{ client[2] }}</td>
+            <td>{{ client[3] }}</td>
+            <td>{{ client[4] }}</td>
+            <td class="actions">
+                <a href="/modifier/{{ client[0] }}">Modifier</a> |
+                <a href="/supprimer/{{ client[0] }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a class="add-client-link" href="/ajout_client">Ajouter un client</a>
 </body>
 </html>
