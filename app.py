@@ -51,15 +51,19 @@ def ajout_client():
         regions = cursor.fetchall()
     return render_template('ajout_client.html', regions=regions)
 
-@app.route('/liste_client')
+@app.route('/liste_client', methods=['GET', 'POST'])
 def list_clients():
+    search_query = request.args.get('search', '')  # Get the search query from the URL
     with conn.cursor() as cursor:
+        # Modify your SQL query to include a LIKE clause to search for clients by name
         cursor.execute("""
-            select c.ID_client, c.nom, c.prenom , c.age, r.libelle 
-                       from client c,region r where c.ID_region=r.ID_region
-        """)
+            SELECT c.ID_client, c.nom, c.prenom, c.age, r.libelle
+            FROM client c
+            JOIN region r ON c.ID_region = r.ID_region
+            WHERE c.nom LIKE ? OR c.prenom LIKE ?
+        """, ('%' + search_query + '%', '%' + search_query + '%'))
         clients = cursor.fetchall()
-    return render_template('liste_client.html', clients=clients)
+    return render_template('liste_client.html', clients=clients, search_query=search_query)
 
 @app.route('/liste_region')
 def list_regions():
