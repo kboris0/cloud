@@ -72,12 +72,6 @@ def list_regions():
 SELECT * FROM region;        """)
         regions = cursor.fetchall()
     return render_template('list-region.html', regions=regions)
-@app.route('/supprimer/<int:id_client>')
-def supprimer(id_client):
-    with conn.cursor() as cursor:
-        cursor.execute("DELETE FROM client WHERE ID_client = ?", (id_client,))
-        conn.commit()
-    return redirect(url_for('list_clients'))
 
 @app.route('/modifier/<int:id_client>', methods=['GET', 'POST'])
 def modifier(id_client):
@@ -103,6 +97,17 @@ def modifier(id_client):
         regions = cursor.fetchall()
     return render_template('modifier.html', client=client, regions=regions)
 
+@app.route('/supprimer/<int:id_client>', methods=['GET', 'POST'])
+def supprimer(id_client):
+    if request.method == 'POST':
+        # If the user confirms, delete the client
+        with conn.cursor() as cursor:
+            cursor.execute("DELETE FROM client WHERE ID_client = ?", (id_client,))
+            conn.commit()
+        return redirect(url_for('list_clients'))
+
+    # If the method is GET, show the confirmation page
+    return render_template('supprimer.html', client_id=id_client)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
