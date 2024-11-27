@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Ajouter Client</title></head>
+<body>
+<h1>Ajouter un nouveau client</h1>
+<form method="POST">
+    Nom: <input type="text" name="nom" required><br>
+    Prénom: <input type="text" name="prenom" required><br>
+    Âge: <input type="number" name="age" required><br>
+    Région: 
+    <select name="id_region">
+        {% for region in regions %}
+        <option value="{{ region[0] }}">{{ region[1] }}</option>
+        {% endfor %}
+    </select><br>
+    <button type="submit">Ajouter</button>
+</form>
+<a href="/liste_client">Retour à la liste</a>
+</body>
+</html>

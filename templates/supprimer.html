@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Supprimer Client</title></head>
+<body>
+<h1>Confirmer la suppression</h1>
+<p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+<form method="POST" action="/supprimer/{{ client_id }}">
+    <button type="submit">Oui, supprimer</button>
+</form>
+<a href="/liste_client">Annuler</a>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><title>Liste des Clients</title></head>
+<body>
+<h1>Liste des Clients</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>    
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Âge</th>
+        <th>Région</th>
+        <th>Actions</th>
+    </tr>
+    {% for client in clients %}
+    <tr>
+        <td>{{ client[0] }}</td>
+        <td>{{ client[1] }}</td>
+        <td>{{ client[2] }}</td>
+        <td>{{ client[3] }}</td>
+        <td>{{ client[4] }}</td>
+        <td>
+            <a href="/modifier/{{ client[0] }}">Modifier</a> |
+            <a href="/supprimer/{{ client[0] }}">Supprimer</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/ajout_client">Ajouter un client</a>
+</body>
+</html>
