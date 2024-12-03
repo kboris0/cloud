@@ -24,11 +24,11 @@ conn_str = (
 )
 conn = pyodbc.connect(conn_str)
 
-
-# Routes
 @app.route('/')
 def home():
-    return redirect(url_for('list_clients'))
+    return render_template('accueil.html')
+
+
 
 @app.route('/ajout_client', methods=['GET', 'POST'])
 def ajout_client():
@@ -65,11 +65,12 @@ def list_clients():
         clients = cursor.fetchall()
     return render_template('liste_client.html', clients=clients, search_query=search_query)
 
-@app.route('/liste_region')
+
+
+@app.route('/liste_regions')
 def list_regions():
     with conn.cursor() as cursor:
-        cursor.execute("""
-SELECT * FROM region;        """)
+        cursor.execute("SELECT * FROM region;")
         regions = cursor.fetchall()
     return render_template('list-region.html', regions=regions)
 
