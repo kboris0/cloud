@@ -13,160 +13,119 @@
 
         body {
             font-family: 'Roboto', Arial, sans-serif;
-            background: #1a2930;
+            background: #0F172A;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Animation de l'arrière-plan */
-        .background {
+        canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #1a2930, #3c8dbc);
-        }
-
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.5);
+            z-index: 1;
             pointer-events: none;
         }
 
-        @keyframes moveParticle {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translate(var(--moveX), var(--moveY)) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .geometric {
-            position: absolute;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Contenu principal avec effet glassmorphism */
         .content-wrapper {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 48px;
             max-width: 800px;
             width: 90%;
-            z-index: 1;
+            margin: 20px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .content-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-            position: relative;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 3rem;
+            margin-bottom: 24px;
+            background: linear-gradient(45deg, #60A5FA, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            line-height: 1.5;
-            max-width: 600px;
+            font-size: 1.25rem;
+            margin-bottom: 36px;
+            line-height: 1.6;
+            color: #E2E8F0;
         }
 
         .button-container {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .button {
-            padding: 15px 30px;
-            font-size: 1rem;
+            padding: 16px 32px;
+            font-size: 1.1rem;
             color: #ffffff;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
         }
 
         footer {
-            position: absolute;
-            bottom: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #b0c4de;
-            z-index: 1;
+            position: fixed;
+            bottom: 0;
             width: 100%;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         footer a {
-            color: #4CAF50;
+            color: #60A5FA;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         footer a:hover {
-            color: #45a049;
-            text-decoration: underline;
+            color: #93C5FD;
         }
     </style>
 </head>
 <body>
-    <div class="background">
-        <div class="particles" id="particles"></div>
-        <div class="geometric" style="width: 300px; height: 300px; top: 20%; left: 10%;"></div>
-        <div class="geometric" style="width: 200px; height: 200px; top: 60%; right: 15%;"></div>
-        <div class="geometric" style="width: 400px; height: 400px; bottom: -10%; left: 50%;"></div>
-    </div>
+    <canvas id="canvas"></canvas>
 
     <div class="content-wrapper">
         <h1>Bienvenue sur notre Projet Cloud</h1>
@@ -183,36 +142,139 @@
     </footer>
 
     <script>
-        // Création des particules animées
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const numberOfParticles = 50;
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let points = [];
+        const numberOfPoints = 50;
+        const connectionDistance = 200;
+        const lineWidth = 2;
 
-            for (let i = 0; i < numberOfParticles; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
+        class Point {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.radius = 2;
+            }
+
+            update() {
+                // Ajout d'une force d'attraction vers la souris
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                // Position aléatoire
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                particle.style.left = posX + '%';
-                particle.style.top = posY + '%';
+                if (distance < 300) {
+                    const force = (300 - distance) / 3000;
+                    this.vx += dx * force;
+                    this.vy += dy * force;
+                }
 
-                // Animation aléatoire
-                const moveX = (Math.random() - 0.5) * 200;
-                const moveY = (Math.random() - 0.5) * 200;
-                particle.style.setProperty('--moveX', moveX + 'px');
-                particle.style.setProperty('--moveY', moveY + 'px');
+                // Limitation de la vitesse
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > 3) {
+                    this.vx = (this.vx / speed) * 3;
+                    this.vy = (this.vy / speed) * 3;
+                }
 
-                // Durée d'animation aléatoire
-                const duration = 3 + Math.random() * 4;
-                particle.style.animation = `moveParticle ${duration}s infinite`;
+                this.x += this.vx;
+                this.y += this.vy;
 
-                particlesContainer.appendChild(particle);
+                // Rebondissement sur les bords
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#60A5FA';
+                ctx.fill();
             }
         }
 
-        createParticles();
+        function init() {
+            points = [];
+            for (let i = 0; i < numberOfPoints; i++) {
+                points.push(new Point());
+            }
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const dx = points[i].x - points[j].x;
+                    const dy = points[i].y - points[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        const opacity = 1 - (distance / connectionDistance);
+                        ctx.beginPath();
+                        ctx.moveTo(points[i].x, points[i].y);
+                        ctx.lineTo(points[j].x, points[j].y);
+                        ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})`;
+                        ctx.lineWidth = lineWidth * opacity;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function createGradient() {
+            points.forEach(point => {
+                const gradient = ctx.createRadialGradient(
+                    point.x, point.y, 0,
+                    point.x, point.y, 100
+                );
+                gradient.addColorStop(0, 'rgba(96, 165, 250, 0.1)');
+                gradient.addColorStop(1, 'rgba(96, 165, 250, 0)');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(point.x - 100, point.y - 100, 200, 200);
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Mise à jour et dessin des points
+            points.forEach(point => {
+                point.update();
+                point.draw();
+            });
+
+            // Dessin des connexions
+            drawConnections();
+            createGradient();
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            init();
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+        }, { passive: false });
+
+        init();
+        animate();
     </script>
 </body>
 </html>
