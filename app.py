@@ -5,10 +5,10 @@ from flask import Flask, redirect, render_template, request, url_for # type: ign
 app = Flask(__name__)
 
 # Récupérer les informations de connexion depuis les variables d'environnement
-server = os.getenv('DB_SERVER', 'societe.database.windows.net')  # Nom du serveur Azure
+server = os.getenv('DB_SERVER', 'boris07.database.windows.net')  # Nom du serveur Azure
 database = os.getenv('DB_NAME', 'societe')  # Nom de la base de données
-username = os.getenv('DB_USER', 'societe')  # Nom d'utilisateur
-password = os.getenv('DB_PASSWORD', 'Dawser1234')  # Mot de passe
+username = os.getenv('DB_USER', 'user')  # Nom d'utilisateur
+password = os.getenv('DB_PASSWORD', 'Tb0123456')  # Mot de passe
 driver = '{ODBC Driver 18 for SQL Server}'  # S'assurer que le driver est installé
 
 # Chaîne de connexion à la base de données Azure
