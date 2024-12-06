@@ -67,6 +67,7 @@ def list_clients():
 
 
 
+
 @app.route('/liste_regions')
 def list_regions():
     with conn.cursor() as cursor:
@@ -84,12 +85,12 @@ def modifier(id_client):
 
         with conn.cursor() as cursor:
             cursor.execute("""
-                UPDATE client 
-                SET nom = ?, prenom = ?, age = ?, ID_region = ? 
-                WHERE ID_client = ?
-            """, (nom, prenom, age, id_region, id_client))
+    INSERT INTO client (nom, prenom, age, ID_region) 
+    VALUES (?, ?, ?, ?)
+""", (nom, prenom, age, id_region))
             conn.commit()
         return redirect(url_for('list_clients'))
+
 
     with conn.cursor() as cursor:
         cursor.execute("SELECT * FROM client WHERE ID_client = ?", (id_client,))
