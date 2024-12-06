@@ -36,7 +36,7 @@ def ajout_client():
         nom = request.form['nom']
         prenom = request.form['prenom']
         age = request.form['age']
-        id_region = request.form['ID_region']
+        id_region = request.form['id_region']
 
         with conn.cursor() as cursor:
             cursor.execute("""
